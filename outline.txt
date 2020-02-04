@@ -1,0 +1,112 @@
+Current API intergartion inprogess
+
+- Weather
+- ZipCode Data
+
+Need data Feilds
+
+ - Male or Female
+
+- Age
+   - (18 - 24)
+   - (25 - 34)
+   - (35 - 44)
+   - (45 - 54)
+   - (55 - 64)
+   - (64+)
+
+- Ethnicity
+   - Cacusin
+   - Hispanic
+   - Asian
+   - etc...
+
+- Time of stay
+   - 1 night
+   - (2 - 4) nights
+   - (5 - 7) nights
+   - 8+ nights
+
+- Holidays (include all official country holidays)
+   - winter break
+       - Christmas
+       - New year's
+   - spring break
+   - summer break
+   - fall break
+       - Thanksgiving
+       - Black Friday
+
+- Weekends vs Week days
+     - (Friday - Sunday)
+    - (Monday - Thursday)
+      
+- Weather
+   - Temperature
+   - raining, overcast, sunny.
+   - wind, snow, "feels like temp"
+
+- Competitors (run same analysis on competitors)
+   - location
+   - pricing
+   - size
+   - ratings
+   - rooms available
+
+- Rooms
+   - one, two, three, bedroom and suites
+   - how noise proof are the walls
+   - type of mattress
+   - bathroom layout
+   - does it have modern updates?
+   - aminties (coffee, microwave, snack bar, etc) 
+   - type of towles
+
+- Where guest are traveling from
+    - get demographics of where they are from
+    - average income
+    - employment rates
+    - common professions
+    - etc ..
+
+- Travel purpose
+   - business
+   - lesuire
+   - solo
+   - family vacation
+   - etc ...
+
+- Location
+   - how close to restaurants
+   - how close to airport
+   - is it next to a freeway?
+   - parking
+   - how close are bars and entertainment
+   - how close are attractions
+
+- Staff background
+   - demographics
+   - years of employment
+   - prior work experience
+
+- Amount of guess booking
+    - rooms available
+    - percentage of rooms booked each day
+
+-Track flights
+   - How much traffic are airline sites getting
+   - Price of flights
+   - where the flights are going
+
+- Business and Entertainment Events
+   - Any large concerts near by
+   - Large corpate events
+   - Conventions should all be tracked
+
+- Hotel Operations cost
+   - each employee salary
+   - how much is spent on utilities
+   - how much in estates tax and other taxes
+   - include ALL operations cost
+
+and much more.
