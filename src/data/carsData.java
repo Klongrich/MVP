@@ -12,15 +12,17 @@ public class carsData {
 
     private static final String Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
 
+
     private static final String AcceptLanguage = "en-US,en;q=0.5";
 
     private static final String AcceptEncoding = "gzip, deflate, br";
 
-    private static final String origin = "https://www.carsforsale.com";
 
-    private static final String Cookie = "ASP.NET_SessionId=jss5lcky0hwthovbviysiyeb; ProfileId=; AvatarUrl=; FirstName=; LastName=; Initials=; Email=; Phone=; LoggedIn=False; MenagerieExternalEndpoint=https://cdn-static-blob.carsforsale.com; serverid=extweb202|XkHOx|XkHKI; __cfduid=d76ce63b7d46cf21a58c440b2c05470a51581369885; D_IID=5342B290-25B7-3F56-90C8-C9A6DDB55E7C; D_UID=86E0E6D6-99F7-37FF-919F-61F1BC277E8C; D_ZID=1A2DBF15-9C65-3A48-B8AF-4E669687A56C; D_ZUID=08162C2B-0375-3A3A-9DDF-BA19FE338B31; D_HID=05F21AAE-E3A1-3105-B34C-A48742754F66; D_SID=24.182.48.162:KDLTqmKimRkaYokSMUXLNv0BP/aSPsaaNKgDKd1D0E8; _ga=GA1.2.514880285.1581369882; _gid=GA1.2.1349311082.1581369882; __auc=d10d372417030fd76f0b5ad7b3b; cfsZipCode=44011";
+    private static final String Cookie = "affiliate=national; srp-external-cpo=audi-original-logo; cars-abtest=unused; ak_bmsc=42D9E345BC1A9B0758E2F24A4E7B265C1734006FB950000065CA415E16806C58~plO5X7nYkbnmmS7PDpI7AWwnbjPTDof9fBETgVWjPo3BBkjRE8oHshppKvQ8ar1BiJy/rFL5/AgcQK3KvuM4Pv+22O4gp9c7+YjUtVr40mOiF/Ao9Tk+Jza4xioZQ1QLyZYNYHconEJNAHJWmQkkegZCloyp8xlMNSPrHH0+TrnfZ2t6H7cKKQdYd1Qcv+9dhxqbzHRvNhTc8D83m24ek5K/kewqyqeCPPx8jHvbRZgzc4FnCE0Z7qLfZT+dgxgCIb; s_fid=4276CD81132CBF41-0CCB720A747A99CE; s_lv=1581372541757; s_ppv=Used%2520Cars%2FSearch%2FResults-CAM-inventory%2C2%2C2%2C670; s_tp=32771; s_cc=true; _gcl_au=1.1.299791796.1581369955; _ga=GA1.2.1426574322.1581369955; _ga_LGBH9NL64W=GS1.1.1581372540.2.1.1581372541.59; s_vi=[CS]v1|2F20E5338515DB81-60000B4DC7A7D955[CE]; optimizelyEndUserId=oeu1581369956489r0.3538804638326035; Registration=currentUserId:o1Vt2I4pNf3++hVmSruSF3SUyC00a/NaNbKILlApzoCI2TYZ3XQm90luJThowk8BYljm6buywGm6pR4qm2PVR8a5tLyRiOlB; returningUser=1581369961097; CarsVisitor=%7B%22pcid%22%3A%22null%22%2C%22pdid%22%3A%221355911218385192837346031012493900%22%7D; BIGipServercars_docker_userprofiles_prd=4198634668.16415.0000; rollout=94; bm_sv=A1ABD11976D84C8A1A3780DBE42E0DCA~nxQI3icI0Bl7JxOHmVNlg/oKnLGGln5S5ulwn96RLR/8FV4uKIYgOIfJN60fInZfrnJ+Whn83m4JkKhrtC9sREMKkozX4qhGKQo7MPYuijuB9PSapyDVyl7zsCM5JVVeZEINzHaCRIBmasieDdYFPMlwfq5msq4FdaLuSJUsgZ8=; zipcode=44011; BIGipServercars_composite=2587956396.23296.0000; _gid=GA1.2.1018130920.1581369958; smtrrmkr=637169669821614313%5E017030fe-b8be-4741-847b-6d0a673bc037%5E017030fe-b8be-4662-b075-5d7e75ad6783%5E0%5E24.182.48.162; QSI_HistorySession=https%3A%2F%2Fwww.cars.com%2Ffor-sale%2Fsearchresults.action%2F%3FdealerType%3Dall%26page%3D1%26perPage%3D100%26rd%3D10%26searchSource%3DGN_REFINEMENT%26sort%3Drelevance%26stkTypId%3D28881%26zc%3D44011~1581370160494%7Chttps%3A%2F%2Fwww.cars.com%2Ffor-sale%2Fsearchresults.action%2F%3FdealerType%3Dall%26page%3D1%26perPage%3D500%26rd%3D10%26searchSource%3DGN_REFINEMENT%26sort%3Drelevance%26stkTypId%3D28881%26zc%3D44011~1581370174017; di_roxanne__visit_id=1683500212; di_roxanne__visitor_id=2774349802; kppid_managed=LfVzInXp; s_sq=%5B%5BB%5D%5D; searchByPayment=false; ADRUM=s=1581369979293&r=https%3A%2F%2Fwww.cars.com%2F%3F0; CarsSidCookie=5824955468714723540865551048389695799; adCatInfo=All|All|DEFAULT_DEFAULT; adZoneInfo=44011|neohio_west|cleveland; BIGipServercars_docker_rendering_prd=4215411884.15109.0000; s_lv_s=Less%20than%201%20day; _gat_gtag_UA_50492232_1=1";
 
     private static final String Connection = "keep-alive";
+
+    private static final String UpgradeInsecureRequests= "1";
 
 
     public static void main(String args[]) {
@@ -33,10 +35,10 @@ public class carsData {
             con.setRequestProperty("User-Agent", USER_AGENT);
             con.setRequestProperty("Accept" , Accept);
             con.setRequestProperty("Accept-Language", AcceptLanguage);
-            // con.setRequestProperty("Accept-Encoding", AcceptEncoding);
-            //con.setRequestProperty("orgin", origin);
-            //con.setRequestProperty("Cookie", Cookie);
-            //con.setRequestProperty("Connection", Connection);
+            //con.setRequestProperty("Accept-Encoding", AcceptEncoding);
+            con.setRequestProperty("Cookie", Cookie);
+            con.setRequestProperty("Connection", Connection);
+            con.setRequestProperty("Upgrade-Insecure-Requests", UpgradeInsecureRequests);
 
             int responseCode = con.getResponseCode();
             System.out.println("GET Response Code :: " + responseCode);
@@ -49,8 +51,10 @@ public class carsData {
 
                 String line = buff.readLine();
 
-
-                System.out.println(line);
+                while (line != null) {
+                    System.out.println(line);
+                    line = buff.readLine();
+                }
 
 
             } else {
