@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class carsData {
 
-    private static final String GET_URL = "https://www.cars.com/for-sale/searchresults.action/?dealerType=all&page=5&perPage=100&rd=100&searchSource=GN_REFINEMENT&sort=relevance&stkTypId=28881&zc=44011";
+    private static final String GET_URL = "https://www.cars.com/for-sale/searchresults.action/?dealerType=all&page=10&perPage=100&rd=100&searchSource=GN_REFINEMENT&sort=relevance&stkTypId=28881&zc=44011";
 
     private static final String USER_AGENT = "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:58.0) Gecko/20100101 Firefox/58.0";
 
@@ -113,7 +113,6 @@ public class carsData {
             System.out.println("Price: " + carData.get(i).getPrice());
             System.out.println("Miles: " + carData.get(i).getMiles());
             System.out.println();
-
         }
 
     }
