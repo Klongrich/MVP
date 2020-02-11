@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class carsData {
 
-    private static final String GET_URL = "https://www.cars.com/for-sale/searchresults.action/?dealerType=all&page=1&perPage=100&rd=100&searchSource=GN_REFINEMENT&sort=relevance&stkTypId=28881&zc=44011";
+    private static final String GET_URL = "https://www.cars.com/for-sale/searchresults.action/?dealerType=all&page=5&perPage=100&rd=100&searchSource=GN_REFINEMENT&sort=relevance&stkTypId=28881&zc=44011";
 
     private static final String USER_AGENT = "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:58.0) Gecko/20100101 Firefox/58.0";
 
@@ -27,8 +27,6 @@ public class carsData {
 
 
     public static void main(String args[]) {
-
-        car newCar = new car("test", "1 mil", "714");
 
         ArrayList<car> carData = new ArrayList<car>();
 
@@ -82,11 +80,14 @@ public class carsData {
                             {
                                 name = buff.readLine();
                             }
-
-                            System.out.println("Price: " + price + "Miles: " + miles + "Name: " + name );
                             System.out.println(line);
                             line = buff.readLine();
                         }
+
+                        car newCar = new car(name, price, miles);
+                        carData.add(newCar);
+
+                        System.out.println("Price: " + price + "Miles: " + miles + "Name: " + name );
 
                     }
                     line = buff.readLine();
@@ -102,6 +103,17 @@ public class carsData {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+        System.out.println();
+        System.out.println();
+
+        for (int i = 0; i < carData.size(); i++) {
+            System.out.println("Name: " + carData.get(i).getName());
+            System.out.println("Price: " + carData.get(i).getPrice());
+            System.out.println("Miles: " + carData.get(i).getMiles());
+            System.out.println();
+
         }
 
     }
