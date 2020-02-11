@@ -21,8 +21,11 @@ public class driver {
         long startTime;
         long endTime;
 
+        long fullStartTime;
+        long fullEndTime;
 
-        for (int i = 1; i < 3; i++) {
+        fullStartTime = System.nanoTime();
+        for (int i = 1; i < 500; i++) {
 
             startTime = System.nanoTime();
 
@@ -30,10 +33,12 @@ public class driver {
             allCarData.add(carData);
 
             endTime = System.nanoTime();
-            System.out.println(i + ": Duration: " + ((endTime - startTime) / 1000) + " seconds");
+            System.out.println(i + ": Duration: " + ((endTime - startTime) / 1000000000) + " seconds");
         }
+        fullEndTime = System.nanoTime();
 
-        System.out.println("test");
+        System.out.println("Full Duration: "+ ((fullEndTime - fullStartTime) / 1000000000) + " seconds");
+
         try {
             FileWriter fw = new FileWriter("/home/kyle/myfiles/java/carProject/src/driver/carData.csv", true);
             fw.write("Name,Price,Miles,Close\n");
@@ -47,7 +52,8 @@ public class driver {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("test");
+
+        System.out.println("Data Collection Complete");
 
     }
 }
