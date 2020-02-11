@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class carsAPI {
 
-    private static final String GET_URL = "https://www.cars.com/for-sale/searchresults.action/?dealerType=all&page=10&perPage=100&rd=100&searchSource=GN_REFINEMENT&sort=relevance&stkTypId=28881&zc=44011";
+    //private static final String GET_URL = "https://www.cars.com/for-sale/searchresults.action/?dealerType=all&page=10&perPage=100&rd=100&searchSource=GN_REFINEMENT&sort=relevance&stkTypId=28881&zc=44011";
 
     private static final String USER_AGENT = "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:58.0) Gecko/20100101 Firefox/58.0";
 
@@ -26,9 +26,10 @@ public class carsAPI {
 
 
 
-    public ArrayList<car> getData() {
+    public ArrayList<car> getData(String GET_URL) {
 
         ArrayList<car> carData = new ArrayList<car>();
+        parse_data_helper parse = new parse_data_helper();
 
         try {
             URL obj = new URL(GET_URL);
@@ -67,12 +68,12 @@ public class carsAPI {
                             if (line.contains("payment-section"))
                             {
                                 buff.readLine();
-                                price = buff.readLine();
+                                price = parse.remove_comma(buff.readLine());
                             }
 
                             if (line.contains("listing-row__mileage"))
                             {
-                                miles = buff.readLine();
+                                miles = parse.remove_comma(buff.readLine());
                             }
 
                             if (line.contains("listing-row__title"))
