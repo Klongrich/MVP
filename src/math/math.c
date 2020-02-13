@@ -65,14 +65,18 @@ void ft_linear_regression(int *x, int *y) {
 
     sum_of_xy = get_sum_of_xy(x, y);
 
-    printf("sum of x: %f\nsum of y: %f\n", sum_of_x_squared, sum_of_y_squared);
+    printf("sum of y: %f\nsum of x: %f\n\n", sum_of_y, sum_of_x);
+    printf("sum of x squared: %f\nsum of y squared: %f\n\n", sum_of_x_squared, sum_of_y_squared);
+    printf("sum of (x * y): %f\n\n", sum_of_xy);
 
     a = (sum_of_y * sum_of_x_squared) - (sum_of_x * (sum_of_xy));
     a /= (5 * sum_of_x_squared) - (sum_of_x * sum_of_x);
 
 
+    b = (((5 * sum_of_xy) - (sum_of_x * sum_of_y)) / ((5 * sum_of_x_squared) - (sum_of_x * sum_of_x)));
+
     printf ("a: %f\n", a);
-    //printf("y: %f\nx: %f\n", sum_of_y, sum_of_x);
+    printf ("b: %f\n", b);
     //y = a + bx
 }
 
