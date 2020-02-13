@@ -37,7 +37,7 @@ float   get_sum_of_xy(int *x, int *y) {
     i = 0;
     total = 0;
     while (i < 5) {
-        total += (x[i] + y[i]);
+        total += (x[i] * y[i]);
         i++;
     }
 
