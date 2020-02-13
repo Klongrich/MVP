@@ -1,5 +1,15 @@
 #include <stdio.h>
 
+int     get_array_length(int *array) {
+
+    int i;
+
+    i = 0;
+    while (array[i] != 0)
+        i++; 
+    return (i);
+}
+
 int     get_sum(int *array) {
 
     int total;
@@ -7,7 +17,7 @@ int     get_sum(int *array) {
 
     i = 0;
     total = 0;
-    while (i < 5) {
+    while (i < get_array_length(array)) {
         total += array[i];
         i++;
     }
@@ -21,7 +31,7 @@ float   get_sum_squared(int *array) {
 
     i = 0;
     total = 0;
-    while (i < 5) {
+    while (i < get_array_length(array)) {
         total += (array[i] * array[i]);
         i++;
     }
@@ -36,7 +46,7 @@ float   get_sum_of_xy(int *x, int *y) {
 
     i = 0;
     total = 0;
-    while (i < 5) {
+    while (i < get_array_length(x)) {
         total += (x[i] * y[i]);
         i++;
     }
@@ -72,8 +82,8 @@ void ft_linear_regression(int *x, int *y) {
     a = (sum_of_y * sum_of_x_squared) - (sum_of_x * (sum_of_xy));
     a /= (5 * sum_of_x_squared) - (sum_of_x * sum_of_x);
 
-
-    b = (((5 * sum_of_xy) - (sum_of_x * sum_of_y)) / ((5 * sum_of_x_squared) - (sum_of_x * sum_of_x)));
+    b = ((5 * sum_of_xy) - (sum_of_x * sum_of_y));
+    b /= ((5 * sum_of_x_squared) - (sum_of_x * sum_of_x));
 
     printf ("a: %f\n", a);
     printf ("b: %f\n", b);
@@ -82,8 +92,9 @@ void ft_linear_regression(int *x, int *y) {
 
 int main() {
 
-    int date[5] = {1, 2, 3, 4, 5};
-    int open[5] = {10, 11, 12, 15, 13};
+    //Make sure what ever array it is it ends in a "0" otherwise errors can occur
+    int date[6] = {1, 2, 3, 4, 5, 0};
+    int open[6] = {10, 11, 12, 15, 13, 0};
 
     ft_linear_regression(date, open);
 
