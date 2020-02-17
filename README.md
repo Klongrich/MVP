@@ -1,5 +1,5 @@
 # MVP
-### Applacation used for competitive pricing in the auto industry ###  
+# Applacation used for competitive pricing in the auto industry #  
 
 # Sites that you are compared to each day #
   - cars.com
@@ -8,7 +8,7 @@
   - autotrader.com
   - more can be added if needed or wanted.
  
-# This applacation is geared more towards higher class and newer cars so by default we only search zip codes in the u.s. that have high resadtional income as poorer areas will not be able to afford such cars. The zip codes we are searching right now are as follows. # 
+### This applacation is geared more towards higher class and newer cars so by default we only search zip codes in the u.s. that have high resadtional income as poorer areas will not be able to afford such cars. The zip codes we are searching right now are as follows. ### 
 
 1. Avon, OH (444011)
 2. Atherton, CA (94027)
