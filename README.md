@@ -10,6 +10,8 @@ Applacation used for competitive pricing in the auto industry
  
 ### This applacation is geared more towards higher class and newer cars so by default we only search zip codes in the u.s. that have high resadtional income as poorer areas will not be able to afford such cars. The zip codes we are searching right now are as follows. ### 
 
+|                         |                        |                          |
+|-------------------------|------------------------|--------------------------|
 | Atherton, CA (94027)    | Los Angeles, CA (90067 | Old Westbury, WA (98039) |
 | Potomac, MD (20817)     | Kenilworth, IL (60043) | Indina Hill, OH (45243)  |
 | Palms Beach, FL (33480) | Weston, MA (02493)     | Wilmington, DE (19807)   |
