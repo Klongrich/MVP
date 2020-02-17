@@ -32,6 +32,12 @@ Other zipcodes can be added in or changed as needed.
   - Suggested best price.
   - Date and time of analysis
  
+# Input #
+
+Upload any excel or google sheets file from the computer or drive into the system
+
+# Output # 
+[comment]: <> (<img src="src/images/inventoryPic.png" >)
 
 
  
