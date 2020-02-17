@@ -8,7 +8,7 @@ Applacation used for competitive pricing in the auto industry
   - autotrader.com
   - more can be added if needed or wanted.
  
-### This applacation is geared more towards higher class and newer cars so by default we only search zip codes in the u.s. that have high resadtional income as poorer areas will not be able to afford such cars. The zip codes we are searching right now are as follows. ### 
+### Different Zip Codes we are searching. Most of which are high income area due to the type of inventory presented to me. ### 
 
 |                         |                        |                          |
 |-------------------------|------------------------|--------------------------|
