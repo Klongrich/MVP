@@ -1,5 +1,5 @@
 # MVP
-# Applacation used for competitive pricing in the auto industry #  
+Applacation used for competitive pricing in the auto industry 
 
 # Sites that you are compared to each day #
   - cars.com
