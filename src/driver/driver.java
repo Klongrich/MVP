@@ -1,17 +1,29 @@
 package driver;
 
-import data.car;
-import data.carsAPI;
-import java.util.*;
-import java.io.BufferedWriter;
+import APIs.*;
+
 import java.io.FileWriter;
 import java.io.IOException;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
-public class driver {
+public class driver extends Thread {
 
-    public static void main(String args[]) {
+    int page_start_number = 0;
+    String zip_code;
+
+    public driver(int page_start_number, String zip_code) {
+            this.page_start_number = page_start_number;
+            this.zip_code = zip_code;
+    }
+
+    DateFormat df = new SimpleDateFormat("MM-dd-yy");
+    Date dateobj = new Date();
+
+    public void run(){
 
         ArrayList<car> carData = new ArrayList<car>();
         ArrayList<ArrayList<car>> allCarData = new ArrayList<ArrayList<car>>();
@@ -25,11 +37,11 @@ public class driver {
         long fullEndTime;
 
         fullStartTime = System.nanoTime();
-        for (int i = 1; i < 500; i++) {
+        for (int i = page_start_number; i < page_start_number + 50; i++) {
 
             startTime = System.nanoTime();
 
-            carData = conn.getData("https://www.cars.com/for-sale/searchresults.action/?dealerType=all&page=" + i + "&perPage=100&rd=100&searchSource=GN_REFINEMENT&sort=relevance&stkTypId=28881&zc=44011");
+            carData = conn.getData("https://www.cars.com/for-sale/searchresults.action/?dealerType=all&page=" + i + "&perPage=100&rd=100&searchSource=GN_REFINEMENT&sort=relevance&stkTypId=28881&zc=" + zip_code);
             allCarData.add(carData);
 
             endTime = System.nanoTime();
@@ -37,10 +49,10 @@ public class driver {
         }
         fullEndTime = System.nanoTime();
 
-        System.out.println("Full Duration: "+ ((fullEndTime - fullStartTime) / 1000000000) + " seconds");
+        System.out.println("Full Duration: " + ((fullEndTime - fullStartTime) / 1000000000) + " seconds");
 
         try {
-            FileWriter fw = new FileWriter("/home/kyle/myfiles/java/carProject/src/driver/carData.csv", true);
+            FileWriter fw = new FileWriter("/home/kyle/myfiles/java/carProject/src/data/carData-" + df.format(dateobj) + ".csv", true);
             fw.write("Name,Price,Miles,Close\n");
 
             for (int j = 0; j < allCarData.size(); j++) {
@@ -48,7 +60,6 @@ public class driver {
                     fw.write(allCarData.get(j).get(x).getName() + "," + allCarData.get(j).get(x).getPrice() + "," + allCarData.get(j).get(x).getMiles() + "\n");
                 }
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
