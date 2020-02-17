@@ -1,14 +1,14 @@
 # MVP
-Applacation used for competitive pricing in the auto industry.  
+### Applacation used for competitive pricing in the auto industry ###  
 
-Sites that you are compared to each day
+# Sites that you are compared to each day #
   - cars.com
   - cargurus.com
   - carmax.com
   - autotrader.com
   - more can be added if needed or wanted.
  
-This applacation is geared more towards higher class and newer cars so by default we only search zip codes in the u.s. that have high resadtional income as poorer areas will not be able to afford such cars. The zip codes we are searching right now are as follows.
+# This applacation is geared more towards higher class and newer cars so by default we only search zip codes in the u.s. that have high resadtional income as poorer areas will not be able to afford such cars. The zip codes we are searching right now are as follows. # 
 
 1. Avon, OH (444011)
 2. Atherton, CA (94027)
@@ -28,17 +28,17 @@ This applacation is geared more towards higher class and newer cars so by defaul
   
 Other zipcodes can be added in or changed as needed. 
 
-Things I would stil need to know
+# Things I would stil need to know # 
   - How does sale tax work when you sell out of state? 
   - How much is shipping a car if someone buys out of state?
   - Is selling out of state supported? 
   
- Functionality
+ # Functionality # 
  
  The base program allows you to upload your excel sheet to it and will return three things.
- 1.) All competior prices
- 2.) Suggested best price.
- 3.) Date and time of analysis
+  - All competior prices
+  - Suggested best price.
+  - Date and time of analysis
  
 
 
