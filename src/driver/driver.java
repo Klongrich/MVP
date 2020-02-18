@@ -28,7 +28,7 @@ public class driver extends Thread {
         ArrayList<car> carData = new ArrayList<car>();
         ArrayList<ArrayList<car>> allCarData = new ArrayList<ArrayList<car>>();
 
-        carsAPI conn = new carsAPI();
+        carsAPI conn = new carsAPI(zip_code);
 
         long startTime;
         long endTime;
@@ -53,11 +53,11 @@ public class driver extends Thread {
 
         try {
             FileWriter fw = new FileWriter("/home/kyle/myfiles/java/carProject/src/data/carData-" + df.format(dateobj) + ".csv", true);
-            fw.write("Name,Price,Miles,Close\n");
+            fw.write("Name,Price,Miles,Zip Code\n");
 
             for (int j = 0; j < allCarData.size(); j++) {
                 for (int x = 0; x < allCarData.get(j).size(); x++) {
-                    fw.write(allCarData.get(j).get(x).getName() + "," + allCarData.get(j).get(x).getPrice() + "," + allCarData.get(j).get(x).getMiles() + "\n");
+                    fw.write(allCarData.get(j).get(x).getName() + "," + allCarData.get(j).get(x).getPrice() + "," + allCarData.get(j).get(x).getMiles() + "," + allCarData.get(j).get(x).getZip_code() + "\n");
                 }
             }
         } catch (IOException e) {
@@ -65,6 +65,5 @@ public class driver extends Thread {
         }
 
         System.out.println("Data Collection Complete");
-
     }
 }

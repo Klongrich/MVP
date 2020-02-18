@@ -28,6 +28,14 @@ public class carsAPI extends Thread {
 
     int page_number_start = 0;
 
+    String zip_code;
+
+    public carsAPI() {};
+
+    public carsAPI(String zip_code)
+    {
+        this.zip_code = zip_code;
+    }
 
     public ArrayList<car> getData(String GET_URL) {
 
@@ -87,7 +95,7 @@ public class carsAPI extends Thread {
                         }
 
                         //System.out.println(name + " " + price + " " + miles);
-                        car newCar = new car(name, price, miles);
+                        car newCar = new car(name, price, miles, this.zip_code);
                         carData.add(newCar);
                     }
                     line = buff.readLine();

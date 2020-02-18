@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 public class helloworld {
-    
+
     public static void main(String[] args)throws Exception {
 
         File carData = new File("./src/data/carData-02-17-20.csv");
@@ -37,10 +37,7 @@ public class helloworld {
                 yearTemp = "2018";
             }
 
-            modelTemp = targets[3].toLowerCase();
-
-
-            carNames.add(yearTemp + " " + targets[4]);
+            carNames.add(yearTemp + " " + targets[3] + " " + targets[4]);
         }
 
         for (int x = 0; x < carNames.size(); x++)
@@ -50,7 +47,7 @@ public class helloworld {
 
 
         while ((data = br.readLine()) != null) {
-            if (data.contains("2019 Audi A7 3.0T")) {
+            if (data.contains("2020 BMW X7")) {
                 System.out.println(data);
             }
         }
