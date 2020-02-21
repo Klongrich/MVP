@@ -74,12 +74,12 @@ public class cargurusAPI {
             temp2 = bmw.split("\\{");
             String result = null;
             String temp3[];
-            for (int j = 1; j < temp2.length; j++) {
+            for (int j = 1; j < temp2.length - 1; j++) {
 
 
                 System.out.println("Temp2[1] " + temp2[j]);
 
-                temp3 = temp2[1].split(",");
+                temp3 = temp2[j].split(",");
 
                 System.out.println("temp3[0] " + temp3[0]);
                 System.out.println("temp3[1] " + temp3[1]);
@@ -95,12 +95,19 @@ public class cargurusAPI {
                 result = "BMW" + " " + temp4[3] + " " + temp5[3];
 
                 System.out.println("\n" + result);
-                results.add("BMW" + " " + temp4[3] + " " + temp5[3]);
+                results.add("BMW" + " " + temp4[3] + ": " + temp5[3]);
             }
             //System.out.println("\nJSON data in string format");
             //System.out.println(inline);
 
             sc.close();
+
+            System.out.println("\n");
+
+            for (int x = 0; x < results.size(); x++)
+            {
+                System.out.println(results.get(x));
+            }
 
         } catch (ProtocolException e) {
             e.printStackTrace();
