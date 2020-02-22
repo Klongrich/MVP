@@ -46,8 +46,33 @@ public class helloworld {
         }
 
 
+        //Parsing cheat sheet (create data formater)
+        //Year formate has to be 4 numbers (ex. 2019, 2018, 2020)
+        //BMW
+        //Porsche
+        //Cadillac
+        //Maserati
+        //Audi
+        //Jaguar
+        //Ford
+        //Jeep
+        //Subaru
+        //Chevrolet
+        //Honda
+        //Kia
+        //Lincoln
+        //
+        //Hits
+        //2019 BMW 740 i
+        //2019 Audi A7 3.0T
+        //2020 BMW X7 - get zip_codes
+        //2020 BMW X5
+        //
+        //2020 Chevrolet Traverse
+        //
+
         while ((data = br.readLine()) != null) {
-            if (data.contains("2020 BMW X7")) {
+            if (data.contains("2019 Lincoln Navigator")) {
                 System.out.println(data);
             }
         }

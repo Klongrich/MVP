@@ -1,6 +1,10 @@
 package APIs;
 
+import utils.key_indexer;
+import utils.indexer;
+
 import java.io.BufferedReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -11,6 +15,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+
+import javax.swing.plaf.synth.SynthTextAreaUI;
+
+import static javax.swing.text.html.HTML.Tag.U;
 
 public class cargurusAPI {
 
@@ -48,15 +56,18 @@ public class cargurusAPI {
 
             Scanner sc = new Scanner(obj.openStream());
 
-            String inline = null;
+            String rawData = null;
 
             while(sc.hasNext()) {
-                inline += (sc.nextLine() + "\n");
+                rawData += (sc.nextLine() + "\n");
             }
 
-            String temp[];
             String bmw = null;
-            temp = inline.split("models");
+            String lexus = null;
+            String ford = null;
+
+            String temp[];
+            temp = rawData.split("models");
 
             for (int i = 0; i < temp.length; i++ ) {
                 System.out.println(temp[i] + "\n");
@@ -64,50 +75,66 @@ public class cargurusAPI {
                 {
                     bmw = temp[i];
                 }
+                else if (temp[i].contains("Ferrari"))
+                {
+                    lexus = temp[i];
+                }
+                else if (temp[i].contains("Ford"))
+                {
+                    ford = temp[i];
+                }
             }
 
-            String temp2[] = null;
-
-            System.out.println("bmw " + bmw);
-
-            ArrayList<String> results = new ArrayList<>();
-            temp2 = bmw.split("\\{");
-            String result = null;
-            String temp3[];
-            for (int j = 1; j < temp2.length - 1; j++) {
+            ArrayList<ArrayList<indexer>> allResults = new ArrayList<>();
+            ArrayList<indexer> bmwResults = new ArrayList<>();
+            ArrayList<indexer> lexusReults = new ArrayList<>();
+            ArrayList<indexer> fordResults = new ArrayList<>();
 
 
-                System.out.println("Temp2[1] " + temp2[j]);
+            key_indexer test = new key_indexer();
 
-                temp3 = temp2[j].split(",");
+            bmwResults = test.get_index_values(bmw.split("\\{"), "BMW");
+            lexusReults = test.get_index_values(lexus.split("\\{"), "Ferrari");
+            fordResults = test.get_index_values(ford.split("\\{"), "Ford");
 
-                System.out.println("temp3[0] " + temp3[0]);
-                System.out.println("temp3[1] " + temp3[1]);
+            allResults.add(bmwResults);
+            allResults.add(lexusReults);
+            allResults.add(fordResults);
 
-                String temp4[];
-                String temp5[];
-
-                temp4 = temp3[0].split("\"");
-                temp5 = temp3[1].split("\"");
-                System.out.println("temp4[3] " + temp4[3]);
-                System.out.println("temp5[3] " + temp5[3]);
-
-                result = "BMW" + " " + temp4[3] + " " + temp5[3];
-
-                System.out.println("\n" + result);
-                results.add("BMW" + " " + temp4[3] + ": " + temp5[3]);
-            }
             //System.out.println("\nJSON data in string format");
             //System.out.println(inline);
 
             sc.close();
 
-            System.out.println("\n");
-
-            for (int x = 0; x < results.size(); x++)
+            for (int x = 0; x < allResults.size(); x++)
             {
-                System.out.println(results.get(x));
+                for (int j = 0; j < allResults.get(x).size(); j++)
+                {
+                    System.out.println(allResults.get(x).get(j).getName() + "," + allResults.get(x).get(j).getID());
+
+                }
             }
+
+            /*
+            try {
+                FileWriter fw = new FileWriter("/home/kyle/myfiles/java/carProject/src/data/indexValues.csv", true);
+                fw.write("Model, ID, \n");
+
+                for (int x = 0; x < allResults.size(); x++)
+                {
+                    for (int j = 0; j < allResults.get(x).size(); j++)
+                    {
+                        fw.write(allResults.get(x).get(j).getName() + "," + allResults.get(x).get(j).getID() + "\n");
+
+                    }
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            */
+
+            System.out.println("\n");
 
         } catch (ProtocolException e) {
             e.printStackTrace();
