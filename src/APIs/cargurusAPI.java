@@ -1,24 +1,21 @@
 package APIs;
 
-import utils.key_indexer;
-import utils.indexer;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
-import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Scanner;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
-import javax.swing.plaf.synth.SynthTextAreaUI;
-
-import static javax.swing.text.html.HTML.Tag.U;
 
 public class cargurusAPI {
 
@@ -34,15 +31,28 @@ public class cargurusAPI {
 
     private static final String UpgradeInsecureRequests = "1";
 
-    static String site_URL = null;
+    public cargurusAPI() {};
 
-    public static void main(String args[]) {
-
+    public void createData(String ID, String year, String index) {
 
         try {
 
-            URL obj = new URL("https://www.cargurus.com/Cars/getCarPickerReferenceDataAJAX.action?showInactive=false&useInventoryService=true&localCountryCarsOnly=true&outputFormat=REACT&quotableCarsOnly=false");
-            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+            URL url = new URL("https://www.cargurus.com/Cars/searchResults.action" +
+                    "?zip=33409" +
+                    "&inventorySearchWidgetType=AUTO" +
+                    "&nonShippableBaseline=73" +
+                    "&sortDir=ASC" +
+                    "&sourceContext=RecentSearches_true_0" +
+                    "&distance=5000" +
+                    "&sortType=DEAL_SCORE" +
+                    "&endYear=2020" +
+                    "&entitySelectingHelper.selectedEntity=" + ID +
+                    "&startYear=" + year +
+                    "&offset=-3" +
+                    "&maxResults=15" +
+                    "&filtersModified=true");
+
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
 
             con.setRequestMethod("GET");
             con.setRequestProperty("User-Agent", USER_AGENT);
@@ -54,93 +64,73 @@ public class cargurusAPI {
             int responseCode = con.getResponseCode();
             System.out.println("GET Response Code :: " + responseCode);
 
-            Scanner sc = new Scanner(obj.openStream());
+            Scanner sc = new Scanner(url.openStream());
 
             String rawData = null;
 
-            while(sc.hasNext()) {
-                rawData += (sc.nextLine() + "\n");
+            while (sc.hasNext()) {
+                rawData += (sc.nextLine());
             }
 
-            String bmw = null;
-            String lexus = null;
-            String ford = null;
-
-            String temp[];
-            temp = rawData.split("models");
-
-            for (int i = 0; i < temp.length; i++ ) {
-                System.out.println(temp[i] + "\n");
-                if (temp[i].contains("BMW"))
-                {
-                    bmw = temp[i];
-                }
-                else if (temp[i].contains("Ferrari"))
-                {
-                    lexus = temp[i];
-                }
-                else if (temp[i].contains("Ford"))
-                {
-                    ford = temp[i];
-                }
-            }
-
-            ArrayList<ArrayList<indexer>> allResults = new ArrayList<>();
-            ArrayList<indexer> bmwResults = new ArrayList<>();
-            ArrayList<indexer> lexusReults = new ArrayList<>();
-            ArrayList<indexer> fordResults = new ArrayList<>();
-
-
-            key_indexer test = new key_indexer();
-
-            bmwResults = test.get_index_values(bmw.split("\\{"), "BMW");
-            lexusReults = test.get_index_values(lexus.split("\\{"), "Ferrari");
-            fordResults = test.get_index_values(ford.split("\\{"), "Ford");
-
-            allResults.add(bmwResults);
-            allResults.add(lexusReults);
-            allResults.add(fordResults);
-
-            //System.out.println("\nJSON data in string format");
-            //System.out.println(inline);
-
-            sc.close();
-
-            for (int x = 0; x < allResults.size(); x++)
-            {
-                for (int j = 0; j < allResults.get(x).size(); j++)
-                {
-                    System.out.println(allResults.get(x).get(j).getName() + "," + allResults.get(x).get(j).getID());
-
-                }
-            }
-
-            /*
             try {
-                FileWriter fw = new FileWriter("/home/kyle/myfiles/java/carProject/src/data/indexValues.csv", true);
-                fw.write("Model, ID, \n");
-
-                for (int x = 0; x < allResults.size(); x++)
-                {
-                    for (int j = 0; j < allResults.get(x).size(); j++)
-                    {
-                        fw.write(allResults.get(x).get(j).getName() + "," + allResults.get(x).get(j).getID() + "\n");
-
-                    }
-                }
-
+                FileWriter fw = new FileWriter("/home/kyle/myfiles/java/carProject/src/data/DriveOpts/meta/" + ID +  "-" + index + ".json", true);
+                fw.write(rawData.substring(4));
+                fw.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            */
 
-            System.out.println("\n");
+            Object obj = new JSONParser().parse(new FileReader("./src/data/DriveOpts/meta/" + ID + "-" + index + ".json"));
 
+            JSONArray plzfuckingwork = (JSONArray) obj;
+
+            ArrayList<Double> price = new ArrayList<>();
+            ArrayList<Long> mileage = new ArrayList<>();
+            ArrayList<String> name = new ArrayList<>();
+            ArrayList<Long> daysOnMarket = new ArrayList<>();
+            ArrayList<String> location = new ArrayList<>();
+
+            for (int x = 0; x < plzfuckingwork.size(); x++) {
+
+                Map address = ((Map) plzfuckingwork.get(x));
+
+                Iterator<Map.Entry> itr1 = address.entrySet().iterator();
+                while (itr1.hasNext()) {
+                    Map.Entry pair = itr1.next();
+
+                    //System.out.println(pair.getKey() + " : " + pair.getValue());
+
+                    if (pair.getKey().equals("listingTitle"))
+                        name.add((String)pair.getValue());
+                    else if (pair.getKey().equals("price"))
+                        price.add((double)pair.getValue());
+                    else if (pair.getKey().equals("sellerCity"))
+                        location.add((String)pair.getValue());
+                    else if (pair.getKey().equals("mileage"))
+                        mileage.add((long)pair.getValue());
+                    else if (pair.getKey().equals("daysOnMarket"))
+                        daysOnMarket.add((long)pair.getValue());
+                }
+            }
+
+            try {
+                FileWriter fw = new FileWriter("/home/kyle/myfiles/java/carProject/src/data/DriveOpts/cvs/" + ID + "-" + index +".csv", true);
+                fw.write("Name,Price,Miles,City,State,DaysOnMarket\n");
+
+                for (int j = 0; j < name.size() - 1; j++){
+                    fw.write(name.get(j) + "," + price.get(j) + "," + mileage.get(j) + "," + location.get(j) + "," + daysOnMarket.get(j) + "\n");
+                }
+                fw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } catch (ProtocolException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
             e.printStackTrace();
         }
     }
