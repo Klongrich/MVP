@@ -82,47 +82,52 @@ public class cargurusAPI {
 
             Object obj = new JSONParser().parse(new FileReader("./src/data/DriveOpts/meta/" + ID + "-" + index + ".json"));
 
-            JSONArray plzfuckingwork = (JSONArray) obj;
+            if (obj != null) {
+                JSONArray plzfuckingwork = (JSONArray) obj;
 
-            ArrayList<Double> price = new ArrayList<>();
-            ArrayList<Long> mileage = new ArrayList<>();
-            ArrayList<String> name = new ArrayList<>();
-            ArrayList<Long> daysOnMarket = new ArrayList<>();
-            ArrayList<String> location = new ArrayList<>();
+                ArrayList<Double> price = new ArrayList<>();
+                ArrayList<Long> mileage = new ArrayList<>();
+                ArrayList<String> name = new ArrayList<>();
+                ArrayList<Long> daysOnMarket = new ArrayList<>();
+                ArrayList<String> location = new ArrayList<>();
 
-            for (int x = 0; x < plzfuckingwork.size(); x++) {
+                if (!plzfuckingwork.isEmpty()) {
+                    for (int x = 0; x < plzfuckingwork.size(); x++) {
 
-                Map address = ((Map) plzfuckingwork.get(x));
+                        Map address = ((Map) plzfuckingwork.get(x));
 
-                Iterator<Map.Entry> itr1 = address.entrySet().iterator();
-                while (itr1.hasNext()) {
-                    Map.Entry pair = itr1.next();
+                        Iterator<Map.Entry> itr1 = address.entrySet().iterator();
+                        while (itr1.hasNext()) {
+                            Map.Entry pair = itr1.next();
 
-                    //System.out.println(pair.getKey() + " : " + pair.getValue());
+                            //System.out.println(pair.getKey() + " : " + pair.getValue());
 
-                    if (pair.getKey().equals("listingTitle"))
-                        name.add((String)pair.getValue());
-                    else if (pair.getKey().equals("price"))
-                        price.add((double)pair.getValue());
-                    else if (pair.getKey().equals("sellerCity"))
-                        location.add((String)pair.getValue());
-                    else if (pair.getKey().equals("mileage"))
-                        mileage.add((long)pair.getValue());
-                    else if (pair.getKey().equals("daysOnMarket"))
-                        daysOnMarket.add((long)pair.getValue());
+                            if (pair.getKey().equals("listingTitle"))
+                                name.add((String) pair.getValue());
+                            else if (pair.getKey().equals("price"))
+                                price.add((double) pair.getValue());
+                            else if (pair.getKey().equals("sellerCity"))
+                                location.add((String) pair.getValue());
+                            else if (pair.getKey().equals("mileage"))
+                                mileage.add((long) pair.getValue());
+                            else if (pair.getKey().equals("daysOnMarket"))
+                                daysOnMarket.add((long) pair.getValue());
+                        }
+                    }
+
+
+                    try {
+                        FileWriter fw = new FileWriter("/home/kyle/myfiles/java/carProject/src/data/DriveOpts/cvs/" + ID + "-" + index + ".csv", true);
+                        fw.write("Name,Price,Miles,City,State,DaysOnMarket\n");
+
+                        for (int j = 0; j < name.size() - 1; j++) {
+                            fw.write(name.get(j) + "," + price.get(j) + "," + mileage.get(j) + "," + location.get(j) + "," + daysOnMarket.get(j) + "\n");
+                        }
+                        fw.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
-
-            try {
-                FileWriter fw = new FileWriter("/home/kyle/myfiles/java/carProject/src/data/DriveOpts/cvs/" + ID + "-" + index +".csv", true);
-                fw.write("Name,Price,Miles,City,State,DaysOnMarket\n");
-
-                for (int j = 0; j < name.size() - 1; j++){
-                    fw.write(name.get(j) + "," + price.get(j) + "," + mileage.get(j) + "," + location.get(j) + "," + daysOnMarket.get(j) + "\n");
-                }
-                fw.close();
-            } catch (IOException e) {
-                e.printStackTrace();
             }
         } catch (ProtocolException e) {
             e.printStackTrace();
