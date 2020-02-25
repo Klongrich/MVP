@@ -121,7 +121,9 @@ public class cargurusAPI {
                         fw.write("Name,Price,Miles,City,State,DaysOnMarket\n");
 
                         for (int j = 0; j < name.size() - 1; j++) {
-                            fw.write(name.get(j) + "," + price.get(j) + "," + mileage.get(j) + "," + location.get(j) + "," + daysOnMarket.get(j) + "\n");
+
+                            if (name.size() > j && price.size() > j && mileage.size() > j && location.size() > j && daysOnMarket.size() > j)
+                                fw.write(name.get(j) + "," + price.get(j) + "," + mileage.get(j) + "," + location.get(j) + "," + daysOnMarket.get(j) + "\n");
                         }
                         fw.close();
                     } catch (IOException e) {
