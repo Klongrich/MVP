@@ -113,16 +113,30 @@ public class cargurusAPI {
                         }
                     }
 
+                    int i;
+                    double priceTotal = 0;
+                    long   mileTotal = 0;
+                    long daysonmarketTotal = 0;
 
+                    i = 0;
                     try {
                         FileWriter fw = new FileWriter("/home/kyle/myfiles/java/carProject/src/data/DriveOpts/cvs/" + get_key_name(ID) + "-" + index + ".csv", true);
                         fw.write("Name,Price,Miles,City,State,DaysOnMarket\n");
 
                         for (int j = 0; j < name.size() - 1; j++) {
 
-                            if (name.size() > j && price.size() > j && mileage.size() > j && location.size() > j && daysOnMarket.size() > j)
+                            if (name.size() > j && price.size() > j && mileage.size() > j && location.size() > j && daysOnMarket.size() > j) {
                                 fw.write(name.get(j) + "," + price.get(j) + "," + mileage.get(j) + "," + location.get(j) + "," + daysOnMarket.get(j) + "\n");
+                                priceTotal += price.get(j);
+                                mileTotal += mileage.get(j);
+                                daysonmarketTotal += daysOnMarket.get(j);
+                                i++;
+                            }
                         }
+                        fw.write("\n");
+                        fw.write("\n");
+                        fw.write("Price Average" + "," + "Mile Average" + "," + "days on market Average" + "\n");
+                        fw.write("," + (priceTotal / i) + "," + (mileTotal / i) + ",,," + (daysonmarketTotal / i) + "\n");
                         fw.close();
                     } catch (IOException e) {
                         e.printStackTrace();
