@@ -5,9 +5,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
@@ -117,7 +115,7 @@ public class cargurusAPI {
 
 
                     try {
-                        FileWriter fw = new FileWriter("/home/kyle/myfiles/java/carProject/src/data/DriveOpts/cvs/" + ID + "-" + index + ".csv", true);
+                        FileWriter fw = new FileWriter("/home/kyle/myfiles/java/carProject/src/data/DriveOpts/cvs/" + get_key_name(ID) + "-" + index + ".csv", true);
                         fw.write("Name,Price,Miles,City,State,DaysOnMarket\n");
 
                         for (int j = 0; j < name.size() - 1; j++) {
@@ -140,5 +138,31 @@ public class cargurusAPI {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+    }
+
+    private String get_key_name(String id)
+    {
+        String answer = null;
+        String line = null;
+        String temp[];
+
+        BufferedReader csvReader = null;
+        try {
+            csvReader = new BufferedReader(new FileReader("./src/data/indexValues.csv"));
+            while ((line = csvReader.readLine()) != null) {
+                temp = line.split(",");
+                if (temp[1].equals(id)) {
+                    csvReader.close();
+                    return (temp[0]);
+                }
+            }
+            csvReader.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return (answer);
     }
 }
