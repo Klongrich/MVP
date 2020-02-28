@@ -30,6 +30,10 @@ public class cargurusAPI {
 
     private static final String UpgradeInsecureRequests = "1";
 
+    private String meta_file_path = null;
+    private String csv_file_path = null;
+    private String averages_file_path = null;
+
     public cargurusAPI() {};
 
     public void createData(String ID, String year, String index) {
@@ -75,14 +79,14 @@ public class cargurusAPI {
             }
 
             try {
-                FileWriter fw = new FileWriter("/home/kyle/myfiles/java/carProject/src/data/DriveOpts/meta/" + ID +  "-" + index + ".json", true);
+                FileWriter fw = new FileWriter("/home/kyle/myfiles/java/carProject/src/data/DriveOpts/meta/" + df.format(dateobj) + "-" + ID +  "-" + index + ".json", true);
                 fw.write(rawData.substring(4));
                 fw.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-            Object obj = new JSONParser().parse(new FileReader("./src/data/DriveOpts/meta/" + ID + "-" + index + ".json"));
+            Object obj = new JSONParser().parse(new FileReader("./src/data/DriveOpts/meta/" + df.format(dateobj) + "-" + ID + "-" + index + ".json"));
 
             if (obj != null) {
                 JSONArray plzfuckingwork = (JSONArray) obj;
@@ -124,7 +128,7 @@ public class cargurusAPI {
 
                     i = 0;
                     try {
-                        FileWriter fw = new FileWriter("/home/kyle/myfiles/java/carProject/src/data/DriveOpts/cvs/" + get_key_name(ID) + "-" + index + ".csv", true);
+                        FileWriter fw = new FileWriter("/home/kyle/myfiles/java/carProject/src/data/DriveOpts/cvs/" + df.format(dateobj) + "-"+ get_key_name(ID) + "-" + index + ".csv", true);
                         fw.write("Name,Price,Miles,City,State,DaysOnMarket\n");
 
                         for (int j = 0; j < name.size() - 1; j++) {
