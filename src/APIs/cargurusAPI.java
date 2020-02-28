@@ -5,15 +5,16 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import search.averages;
+
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Scanner;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class cargurusAPI {
 
@@ -32,6 +33,9 @@ public class cargurusAPI {
     public cargurusAPI() {};
 
     public void createData(String ID, String year, String index) {
+
+        DateFormat df = new SimpleDateFormat("MM-dd-yy");
+        Date dateobj = new Date();
 
         try {
 
@@ -138,6 +142,11 @@ public class cargurusAPI {
                         fw.write("Price Average" + "," + "Mile Average" + "," + "days on market Average" + "\n");
                         fw.write("," + (priceTotal / i) + "," + (mileTotal / i) + ",,," + (daysonmarketTotal / i) + "\n");
                         fw.close();
+
+                        FileWriter averages = new FileWriter("/home/kyle/myfiles/java/carProject/src/data/DriveOpts/averages-"  + df.format(dateobj) + ".csv", true);
+                        averages.write(get_key_name(ID) + "-" + index + "," + (priceTotal / i) + "," + (mileTotal / i) + "," + (daysonmarketTotal / i) + "\n");
+                        averages.close();
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
